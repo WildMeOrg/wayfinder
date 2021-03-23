@@ -1,16 +1,22 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>Edit Links | Wild Me Wayfinder</title>
+<title>Update Link | Wild Me Wayfinder</title>
 {% endblock %}
 
 {% block body %}
 <div class="content">
-  <H1>Update task</H1>
-  <form action="/update/{{task.id}}" method="POST">
-    <input type="text" name="content" id="content" value="{{task.content}}">
-    <input type="submit" value="Update task">
+  <h5>Update Link</h5>
+  <form class="simple-form" action="/update/{{ link.id }}" method="POST">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input" type="text" id="label" name="label" value="{{ link.label }}">
+      <label class="mdl-textfield__label" for="label">Label</label>
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input" type="text" id="href" name="href" value="{{ link.href }}">
+      <label class="mdl-textfield__label" for="href">URL</label>
+    </div>
+    <input style="max-width: 120px;" class="cta mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" type="submit" value="Update link">
   </form>
 </div>
 {% endblock %}
-

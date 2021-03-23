@@ -6,6 +6,12 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
 
+class Link(db.Model):
+	id = db.Column(db.Integer, primary_key = True)
+	label = db.Column(db.String(100), nullable=False)
+	href = db.Column(db.String(421), nullable=False)
+	date_created = db.Column(db.DateTime, default=datetime.utcnow)
+
 class Todo(db.Model):
 	id = db.Column(db.Integer, primary_key = True)
 	content = db.Column(db.String(200), nullable = False)
@@ -15,48 +21,61 @@ class Todo(db.Model):
 	def __repr__(self):
 		return f'<Task {self.id}>'
 
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/')
 def index():
-	if request.method == 'POST':
-		task_content = request.form['content']
-		new_task = Todo(content=task_content)
-		try:
-			db.session.add(new_task)
-			db.session.commit()
-			print(new_task)
-			return redirect('/')
-		except:
-			return 'Catastrophic failure'
-	elif request.method == 'GET':
-		tasks = Todo.query.order_by(Todo.date_created).all()
-		print(tasks)
-		return render_template('index.html', tasks=tasks)
+	links = Link.query.order_by(Link.date_created).all()
+	return render_template('index.html', links=links)
 
 @app.route('/delete/<int:id>')
 def delete(id):
-	print('called')
-	task_to_delete = Todo.query.get_or_404(id)
-
+	link_to_update = Link.query.get_or_404(id)
 	try:
-		db.session.delete(task_to_delete)
+		db.session.delete(link_to_update)
 		db.session.commit()
-		return redirect('/')
+		return redirect('/edit')
 	except:
 		return 'Catastrophic failure'
 
 @app.route('/update/<int:id>', methods=['GET', 'POST'])
 def update(id):
-	task_to_update = Todo.query.get_or_404(id)
+	link_to_update = Link.query.get_or_404(id)
 
 	if request.method == 'POST':
-		task_to_update.content = request.form['content']
+		link_to_update.label = request.form['label']
+		link_to_update.href = request.form['href']
 		try:
 			db.session.commit()
-			return redirect('/')
+			return redirect('/edit')
 		except:
 			return 'Catastrophic failure'
 	else:
-		return render_template('update.html', task=task_to_update)
+		return render_template('update.html', link=link_to_update)
+
+@app.route('/add', methods=['GET', 'POST'])
+def add():
+	if request.method == 'POST':
+		print(request.form)
+		new_label = request.form['label']
+		new_href = request.form['href']
+		print(new_label)
+		print(new_href)
+		new_link = Link(label=new_label, href=new_href)
+		try:
+			db.session.add(new_link)
+			db.session.commit()
+			return redirect('/edit')
+		except:
+			return 'Catastrophic failure'
+	elif request.method == 'GET':
+		return render_template('add.html')
+
+@app.route('/edit', methods=['GET', 'POST'])
+def edit():
+	links = Link.query.order_by(Link.date_created).all()
+	if request.method == 'POST':
+		pass
+	elif request.method == 'GET':
+		return render_template('edit.html', links=links)
 
 if __name__ == '__main__':
 	app.run(debug=True)

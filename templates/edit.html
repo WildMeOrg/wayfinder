@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Edit Links | Wild Me Wayfinder</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+  <h5>Edit Links</h5>
+  {% for link in links %}
+  <li class="item mdl-list__item mdl-list__item--three-line">
+    <span class="mdl-list__item-primary-content">
+      <!-- <i class="material-icons">link</i> -->
+      <span>{{ link.label }}</span>
+      <span class="mdl-list__item-text-body">
+        {{ link.href }}
+      </span>
+    </span>
+    <span class="mdl-list__item-secondary-content" style="flex-direction: row; align-items: flex-start;">
+      <a class="iconbutton mdl-list__item-secondary-action" href="/update/{{ link.id }}">
+        <i class="material-icons">edit</i>
+      </a>
+      <a class="iconbutton mdl-list__item-secondary-action" style="margin-left: 4px;" href="/delete/{{ link.id }}">
+        <i class="material-icons">delete</i>
+      </a>
+    </span>
+  </li>
+  {% endfor %}
+  <a href="/add">
+    <button class="cta mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+      Add link
+    </button>
+  </a>
+
+</div>
+{% endblock %}
+

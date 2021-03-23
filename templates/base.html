@@ -7,12 +7,32 @@
   {% block head %}{% endblock %}
   <meta name="description" content="Wild Me Wayfinder">
   <meta name="author" content="Ben Scheiner">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.blue_grey-red.min.css" />
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 
 </head>
 
 <body>
-  <!-- <script src="js/scripts.js"></script> -->
-  {% block body %}{% endblock %}
+  <div class="column">
+    <a style="margin: 0 auto;" href="/">
+      <img class="logo-header" src="{{ url_for('static', filename='assets/logo-white.svg') }}">
+    </a>
+    <!-- <script src="js/scripts.js"></script> -->
+    {% block body %}{% endblock %}
+  </div>
+  <footer>
+    <i class="material-icons">facebook</i>
+    <i class="material-icons">instagram</i>
+    <i class="material-icons">github</i>
+    <div class="icon material-icons">github</div>
+    <span style="font-size: 20px; display: flex; align-items: center;">
+      <img class="logo-footer" src="{{ url_for('static', filename='assets/logo-gradient.png') }}">
+      <span style="font-weight: 500; margin-left: 12px">WILD</span>
+      <span style="font-weight: 200;">ME</span>
+    </span>
+    <span style="font-size: 12px; margin-top: 12px;" >Copyright © 2021 Wild Me. All rights reserved.</span>
+  </footer>
 </body>
 </html>

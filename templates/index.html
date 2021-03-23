@@ -8,7 +8,7 @@
 <div class="content">
   <div class="tree">
     {% for link in links %}
-    <a href="{{ link.href }}" target="_blank">
+    <a href="{{ link.href }}" target="_blank noopener noreferrer">
       <button class="cta branch mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
         {{ link.label }}
       </button>

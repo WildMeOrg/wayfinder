@@ -12,9 +12,9 @@
     <span class="mdl-list__item-primary-content">
       <!-- <i class="material-icons">link</i> -->
       <span>{{ link.label }}</span>
-      <span class="mdl-list__item-text-body">
+      <a href="{{ link.href }}" target="_blank noopener noreferrer" class="mdl-list__item-text-body">
         {{ link.href }}
-      </span>
+      </a>
     </span>
     <span class="mdl-list__item-secondary-content" style="flex-direction: row; align-items: flex-start;">
       <a class="iconbutton mdl-list__item-secondary-action" href="/update/{{ link.id }}">

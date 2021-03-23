@@ -23,15 +23,25 @@
     {% block body %}{% endblock %}
   </div>
   <footer>
-    <i class="material-icons">facebook</i>
-    <i class="material-icons">instagram</i>
-    <i class="material-icons">github</i>
-    <div class="icon material-icons">github</div>
-    <span style="font-size: 20px; display: flex; align-items: center;">
+    <div class="social-container">
+      <a target="_blank noopener noreferrer" href="https://www.facebook.com/wildmeorg">
+        <img class="logo-social" src="{{ url_for('static', filename='assets/facebook.png') }}" />
+      </a>
+      <a target="_blank noopener noreferrer" href="https://www.instagram.com/wildmeorg">
+        <img class="logo-social" src="{{ url_for('static', filename='assets/instagram.png') }}" />
+      </a>
+      <a target="_blank noopener noreferrer" href="https://twitter.com/wildmeorg">
+        <img class="logo-social" src="{{ url_for('static', filename='assets/twitter.png') }}" />
+      </a>
+      <a target="_blank noopener noreferrer" href="https://github.com/wildmeorg">
+        <img class="logo-social" src="{{ url_for('static', filename='assets/github.png') }}" />
+      </a>
+    </div>
+    <a target="_blank noopener noreferrer" href="https://wildme.org/" style="font-size: 20px; display: flex; align-items: center;">
       <img class="logo-footer" src="{{ url_for('static', filename='assets/logo-gradient.png') }}">
       <span style="font-weight: 500; margin-left: 12px">WILD</span>
       <span style="font-weight: 200;">ME</span>
-    </span>
+    </a>
     <span style="font-size: 12px; margin-top: 12px;" >Copyright © 2021 Wild Me. All rights reserved.</span>
   </footer>
 </body>

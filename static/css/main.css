@@ -45,6 +45,10 @@ a {
   border-radius: 2000px;
 }
 
+.cta:hover {
+  background-color: rgb(190 190 190);
+}
+
 .item {
   background-color: #f3f3f3;
   padding: 24px 16px;

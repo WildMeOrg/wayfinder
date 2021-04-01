@@ -6,7 +6,7 @@ from werkzeug.security import check_password_hash
 from config import users
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 db = SQLAlchemy(app)
 auth = HTTPBasicAuth()
 
